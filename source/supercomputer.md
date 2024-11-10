@@ -49,15 +49,22 @@
      ![supercomputer_Xftp_create_link_1.png](./img/supercomputer_Xftp_create_link_1.png)
    - 按照下图所示进行设置：（ip 和端口号、用户名、Public Key，与 XShell 一致）
      ![supercomputer_Xftp_create_link_2.png](./img/supercomputer_Xftp_create_link_2.png)
+3. 向远端服务器发送文件
+   - 登录成功后，窗口会分成两个区域，左侧为你的本地目录，右侧为远端服务器目录。
+   -
 
-### E-Shell 命令行
+### 网页端使用
 
 点击下面的网址输入账号密码后登陆：
 [https://manage-sc.hdu.edu.cn/sso/login](https://manage-sc.hdu.edu.cn/sso/login)
 
-若您处于校外，请使用 VPN 进行登录，然后再 VPN 中选择“超算平台”并输入账号。
+若您处于校外，请使用 VPN 进行登录，然后在 VPN 中选择“超算平台”并输入账号。
 
 1. [杭州电子科技大学 VPN](https://vpn.hdu.edu.cn)
+
+####
+
+#### E-Shell 命令行
 
 ### slurm 脚本编写
 
@@ -80,6 +87,44 @@ OMP_NUM_THREADS = $SLURM_NPROCS
 ```
 
 ## MATLAB
+
+### 上传代码文件
+
+为了保证作业的规范性，在上传代码文件时请遵循以下规则：
+
+1. 在用户主目录下创建一个名为`code`的文件夹，所有代码均保存在这里。
+2. 如果一个账号有多人同时使用，建议在`code`下建立一个以名字命名的文件夹（不得使用空格、中文及其他特殊符号）。
+3. 文件上传到自己的代码文件夹中。
+4.
+
+### 作业提交
+
+1. 将光标置于上方第一个选项的位置（这里是“工程计算”）然后选择`仿真计算`
+   ![supercomputer_matlab_guide_1.png](./img/supercomputer_matlab_guide_1.png)
+2. 将光标置于 Matlab 上，可以选择模板、命令行、图形三种模式（若没此选项请联系管理员）
+   ![supercomputer_matlab_guide_2.png](./img/supercomputer_matlab_guide_2.png)
+   ![supercomputer_matlab_guide_3.png](./img/supercomputer_matlab_guide_3.png)
+3. 如果代码中不含有`parpool`等调用并行计算的代码，则只需申请一个核心就可以了。
+
+#### 图形化界面
+
+下图是图形化界面配置选择界面，在这里选择本次开启使用的版本、核心数和最大运行时间。（建议 4 个或更多）
+![supercomputer_matlab_gui_4.png](./img/supercomputer_matlab_gui_4.png)
+系统中自带的 Matlab 版本及其位置：
+
+- 2021b：`/public/software/apps/MatlabR21b/bin/matlab`
+- 2020a：`/public/software/apps/MatlabR20a/R2020a/bin/matlab`
+
+**注意**：
+**1. 模板中的预置版本不能使用，请自己手动配置可用路径，若需其他版本，请联系管理员。**
+**2. 图形化界面使用完后，务必手动关闭，否则会持续计费至截止时间，并占据超算资源，请避免资源浪费。**
+**3. 最大运行时限到达后会强制结束进程，请至少设置 72 小时，避免计算任务无法完成。**
+
+#### 模板
+
+下图是模板配置界面，在这里选择需要使用的代码文件，以及版本、所需的计算资源。
+
+#### slurm 脚本
 
 ### 代码规范
 
@@ -147,3 +192,5 @@ OMP_NUM_THREADS = $SLURM_NPROCS
    9. `matlab -nodesktop -nosplash -nodisplay -r <matlab_script>`：执行脚本，不显示桌面环境、不显示启动画面、不显示图形画面。其中`<script_name>`为脚本名称，如`test`（不带`.m`）。
 
 2. 多核心
+
+## Pytorch
