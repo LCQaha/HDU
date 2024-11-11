@@ -163,4 +163,18 @@
 
    ```
 
+2. 调用并行池
+
+   ```matlab
+   delete(gcp('nocreate'));      % 删除当前存在的并行池
+   mypar = parpool(<corenum>);   % 创建并行池，<corenum>为核数
+
+   parfor ……
+
+   end
+
+   delete(mypar);                % 删除并行池
+
+   ```
+
 ## Pytorch（施工中……）
