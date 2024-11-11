@@ -4,7 +4,9 @@
 
 ### 软件简明教程
 
-这里只讲软件使用的必要步骤，详细使用及安装请移步[linux 学习笔记（链接施工中……）](https://github.com/LCQaha/My_notebook/blob/main/Linux/HanSP_notebook.md#%E8%BD%AF%E4%BB%B6%E6%96%BD%E5%B7%A5%E4%B8%AD)，如果觉得本节太难请直接跳过。
+这里只讲软件使用的必要步骤，详细使用及安装请移步[linux 学习笔记（施工中……）](https://github.com/LCQaha/My_notebook/blob/main/Linux/HanSP_notebook.md#%E8%BD%AF%E4%BB%B6%E6%96%BD%E5%B7%A5%E4%B8%AD)，如果觉得本节太难请直接跳过。
+
+软件网盘资源请[点击此处](https://pan.baidu.com/s/14sh6Jx0jNJekzR0epgrdgQ?pwd=yxsm)
 
 在本节中，将介绍如何使用 XShell 和 Xftp。根据当前信息，这两个软件只能在杭州电子科技大学校园网中使用，若使用时您在校外，请使用 VPN 登陆后直接在网页操作。
 
@@ -51,7 +53,8 @@
      ![supercomputer_Xftp_create_link_2.png](./img/supercomputer_Xftp_create_link_2.png)
 3. 向远端服务器发送文件
    - 登录成功后，窗口会分成两个区域，左侧为你的本地目录，右侧为远端服务器目录。
-   -
+     ![supercomputer_Xftp_send_file_1.png](./img/supercomputer_Xftp_send_file_1.png)
+   - 在打开远程服务器中，接收文件的目标文件夹，然后本地找到需要传送的文件或文件夹，`右键-传输`即可发送到服务器。
 
 ### 网页端使用
 
@@ -62,29 +65,14 @@
 
 1. [杭州电子科技大学 VPN](https://vpn.hdu.edu.cn)
 
-####
+#### 文件上传
+
+1. 点击网页上方的`数据管理-文件管理（E-File）`
+2. 点击上传，选择上传文件或文件夹。
 
 #### E-Shell 命令行
 
-### slurm 脚本编写
-
-```bash
-#!/bin/bash
-#SBATCH -J <job_name>
-#SBATCH -p <process_name>
-#SBATCH -N <node_number>
-#SBATCH --ntasks-per-node=<core_number>
-#SBATCH --gres=gpu:<gpu_number>
-#SBATCH --time=<time_limit>
-
-cd $SLURM_SUBMIT_DIR
-#################################
-source /public/software/profile.d/***.**
-
-srun hostname -s | sort -n >slurm.hosts
-OMP_NUM_THREADS = $SLURM_NPROCS
-
-```
+作用与 XShell 类似，由于网络原因，不建议使用远程命令行工具。
 
 ## MATLAB
 
@@ -95,7 +83,10 @@ OMP_NUM_THREADS = $SLURM_NPROCS
 1. 在用户主目录下创建一个名为`code`的文件夹，所有代码均保存在这里。
 2. 如果一个账号有多人同时使用，建议在`code`下建立一个以名字命名的文件夹（不得使用空格、中文及其他特殊符号）。
 3. 文件上传到自己的代码文件夹中。
-4.
+
+【例】张三和李四属于同一个科研小组 A，他们创建了一个名为`A_part`的超算账号共同使用，则张三的代码存放路径`/public/home/A_part/code/zhangsan`，李四的代码存放路径`/public/home/A_part/code/lisi`。
+张三需要跑一个 MATLAB 代码，其将代码存放在`/public/home/A_part/code/zhangsan/MATLAB_JOB_A_1`下，但第一次跑出的结果不理想，于是修改代码后将代码传到`/public/home/A_part/code/zhangsan/MATLAB_JOB_A_2`。
+**再次申明，当前不建议在一个文件夹中运行两次代码，如确有需求，请联系管理员解决问题。**
 
 ### 作业提交
 
@@ -129,7 +120,7 @@ OMP_NUM_THREADS = $SLURM_NPROCS
 ### 代码规范
 
 1. 文件路径
-   由于 Windows 和 Linux 系统文件路径格式不同，故建议通过代码代替路径字符串建立文件的保存路径。
+   由于 Windows 和 Linux 系统文件路径格式不同，故建议通过代码代替路径字符串建立文件的保存路径。**（严禁使用斜线表示路径）**
 
    ```matlab
    %% 代码说明：
@@ -157,40 +148,19 @@ OMP_NUM_THREADS = $SLURM_NPROCS
       disp(['文件夹 ', folder_name, ' 已经存在']);
    end
 
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+   % 一个向my_foldername写入文本的例子
+
+   text_file = 'my_textfile.txt';
+   file_path = fullfile(folder_path,text_file);
+   f = fopen(file_path,'w');
+   fprintf(f,'This is a test file.');
+   fclose(f);
+   disp(['文本文件 ', text_file, ' 创建成功']);
+   disp(['文本文件路径：', file_path]);
+
    ```
 
-### MatLab
-
-本节只列出作业提交脚本编写范例，具体代码编写技巧请参照：[MATLAB 代码编写规范](./MATLAB_code_guide.md)
-
-1. 单核心
-
-   ```sh
-   #!/bin/bash
-   #SBATCH -J <job_name>
-   #SBATCH -p normal
-   #SBATCH -N 1
-   #SBATCH --ntasks-per-node=<core_number>
-   #SBATCH --time <time_limit>
-
-   cd $SLURM_SUBMIT_DIR
-   source /public/software/profile.d/apps_matlab2020a.sh
-
-   matlab -nodesktop -nosplash -nodisplay -r <matlab_script>
-   ```
-
-   1. `#!/bin/bash`：shebang 行，用于指定脚本解释器
-   2. `#SBATCH -J <job_name>`：指定任务名称为`<job_name>`
-   3. `#SBATCH -p normal`：指定队列，一般采用默认值`normal`
-   4. `#SBATCH -N 1`：指定节点数，一般为 1。
-   5. `#SBATCH --ntasks-per-node=<core_number>`：指定每个节点的 CPU 核心数为`<core_number>`
-   6. `#SBATCH --time <time_limit>`：指定任务运行时限，如 1 小时，`1:00:00`。
-   7. `cd $SLURM_SUBMIT_DIR`：切换到任务提交目录。
-   8. `source /public/software/profile.d/apps_matlab2020a.sh`：指定 Matlab 环境，当前可选环境为：
-      - `/public/software/profile.d/apps_matlab2020a.sh`
-      - `source /public/software/profile.d/apps_matlab2021b.sh`
-   9. `matlab -nodesktop -nosplash -nodisplay -r <matlab_script>`：执行脚本，不显示桌面环境、不显示启动画面、不显示图形画面。其中`<script_name>`为脚本名称，如`test`（不带`.m`）。
-
-2. 多核心
-
-## Pytorch
+## Pytorch（施工中……）
