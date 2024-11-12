@@ -6,7 +6,8 @@
 
 这里只讲软件使用的必要步骤，详细使用及安装请移步[linux 学习笔记（施工中……）](https://github.com/LCQaha/My_notebook/blob/main/Linux/HanSP_notebook.md#%E8%BD%AF%E4%BB%B6%E6%96%BD%E5%B7%A5%E4%B8%AD)，如果觉得本节太难请直接跳过。
 
-软件网盘资源请[点击此处](https://pan.baidu.com/s/14sh6Jx0jNJekzR0epgrdgQ?pwd=yxsm)
+软件网盘资源请[点击此处](https://pan.baidu.com/s/14sh6Jx0jNJekzR0epgrdgQ?pwd=yxsm)。
+软件安装无脑下一步就行了，不放心的话就[点击此处](https://www.bilibili.com/video/BV1Sv411r7vd/?p=14&share_source=copy_web&vd_source=d2703b4814ac43d97585ae499ae4f355&t=456)。
 
 在本节中，将介绍如何使用 XShell 和 Xftp。根据当前信息，这两个软件只能在杭州电子科技大学校园网中使用，若使用时您在校外，请使用 VPN 登陆后直接在网页操作。
 
@@ -37,9 +38,11 @@
    - 点击图中按钮，将链接添加至链接栏。
      ![supercomputer_XShell_create_link_7.png](./img/supercomputer_XShell_create_link_7.png)
    - 点击链接，开始访问。
-5. 基本命令教学
+   - **注意：私钥有效期为 1 个月，到期后须更换**
+5. 也可以使用密码登录
+   - 在`用户身份验证`中选择`Password`，并输入账号密码保存。
+6. 基本命令教学
    - `ls`：列出当前目录下的所有文件。
-   - `
 
 #### Xftp
 
