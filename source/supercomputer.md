@@ -103,7 +103,7 @@
 #### 图形化界面
 
 下图是图形化界面配置选择界面，在这里选择本次开启使用的版本、核心数和最大运行时间。（建议 4 个或更多）
-![supercomputer_matlab_gui_4.png](./img/supercomputer_matlab_gui_4.png)
+![supercomputer_matlab_gui_1.png](./img/supercomputer_matlab_gui_1.png)
 系统中自带的 Matlab 版本及其位置：
 
 - 2021b：`/public/software/apps/MatlabR21b/bin/matlab`
