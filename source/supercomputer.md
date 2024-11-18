@@ -1,5 +1,10 @@
 # 杭州电子科技大学超算使用指南
 
+## 计划更新
+
+1. 详细的 MATLAB 代码例程。
+2. Python 代码的运行
+
 ## 基础知识
 
 ### 软件简明教程
@@ -67,6 +72,7 @@
 若您处于校外，请使用 VPN 进行登录，然后在 VPN 中选择“超算平台”并输入账号。
 
 1. [杭州电子科技大学 VPN](https://webvpn.hdu.edu.cn)
+   ![supercomputer_VPN_1.png](./img/supercomputer_VPN_1.png)
 
 #### 文件上传
 
